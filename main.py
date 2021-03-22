@@ -25,5 +25,4 @@ async def on_message(message: Message):
         await cp.parse_command(message.content, message.channel)
 
 
-if __name__ == "__main__":
-    client.run(os.getenv('TOKEN'))
+client.run(os.getenv('TOKEN'))
