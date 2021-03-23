@@ -5,7 +5,10 @@ import yfinance as yf
 
 
 async def parse_command(command: str, channel: TextChannel):
-    if command.startswith("-sg"):
+    if "/" in command or "\\" in command:
+        await channel.send("Invalid syntax. Can't use /")
+
+    elif command.startswith("-sg"):
         command = command.split(" ")
         if len(command) >= 2:
             await stock_graph(command[1], channel, command[2:])
@@ -17,6 +20,8 @@ def load_stock_graph(company: str, **kwargs) -> bool:
 
     try:
         data = yf.download(tickers=company, period=period, interval=interval)
+        if data.empty:
+            return False
         close = data['Close']
         close.plot()
         plt.title(company.upper())
