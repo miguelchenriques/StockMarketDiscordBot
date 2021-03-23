@@ -19,7 +19,7 @@ def load_data(company: str, **kwargs) -> Tuple[DataFrame, str]:
     return data, None
 
 
-def create_graph(data: DataFrame, field: str, name: str) -> bool:
+def create_graph(data: DataFrame, field: str, name: str, label: str) -> bool:
     if data.empty:
         return False
     try:
